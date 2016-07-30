@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Subscription notifications for careabout",
   "main": "index.js",
+  "engines": {
+    "node": "6.3.0"
+  },
   "scripts": {
     "start": "node server/server.js",
     "server": "node-inspector --web-port 8888 & nodemon --debug server/server"
