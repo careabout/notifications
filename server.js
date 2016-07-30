@@ -1,7 +1,11 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var path = require('path')
-require('dotenv').config()
+
+//if (process.env.NODE_ENV !== 'production') {
+  //require('dotenv').config()
+//}
+require('dotenv').config({silent: true});
 
 var subscriptions = require('./routes/subscription')
 
