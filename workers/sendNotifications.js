@@ -1,12 +1,11 @@
-//if (process.env.NODE_ENV !== 'production') {
-  //require('dotenv').config()
-//}
-require('dotenv').config({silent: true});
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 var message = { 
   app_id: process.env.APP_ID,
   contents: {"en": "This is your Auckland notification."},
-  //included_segments: ["Auckland"]
+  included_segments: ["Auckland"]
 }
 
 sendNotification(message)
