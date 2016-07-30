@@ -1,0 +1,32 @@
+{
+  "name": "notifications",
+  "version": "1.0.0",
+  "description": "Subscription notifications for careabout",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "server": "node-inspector --web-port 8888 & nodemon --debug server/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/careabout/notifications.git"
+  },
+  "author": "careabout",
+  "license": "See license in LICENSE",
+  "bugs": {
+    "url": "https://github.com/careabout/notifications/issues"
+  },
+  "homepage": "https://github.com/careabout/notifications#readme",
+  "devDependencies": {
+    "node-inspector": "^0.12.8",
+    "nodemon": "^1.10.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "mongodb": "^2.2.5"
+  }
+}
