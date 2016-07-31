@@ -8,10 +8,9 @@ var router = express.Router()
 router.post('/:id', (req, res) => {
   var id = req.params.id
   var topics = req.body.topics
-  var locations = req.body.locations
-  onesignal.update(id, topics, locations)
+  onesignal.update(id, topics)
     .then(() => {
-      db.save(id, topics, locations)
+      db.save(id, topics)
         .then(() => {
           res.sendStatus(200)
         })
@@ -36,10 +35,9 @@ router.get('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
   var id = req.params.id
   var topics = req.body.topics
-  var locations = req.body.locations
-  onesignal.update(id, topics, locations)
+  onesignal.update(id, topics)
     .then(() => {
-      db.update(id, topics, locations)
+      db.update(id, topics)
         .then(() => {
           res.sendStatus(200)
         })

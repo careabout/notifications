@@ -3,13 +3,12 @@ require('dotenv').config()
 
 module.exports = { save, get, update }
 
-function save(id, topics, locations) {
+function save(id, topics) {
   return new Promise ((resolve, reject) => {
     mongoClient.connect(process.env.SUBSCRIPTION_DB, (err, db) => {
-      db.collection('test').insertOne({
+      db.collection('subscriptions').insertOne({
         "id": id,
-        "topics": topics,
-        "locations": locations
+        "topics": topics
       }, (err, result) => {
         db.close()
         if (err) {
@@ -22,12 +21,11 @@ function save(id, topics, locations) {
   })
 }
 
-function update(id, topics, locations) {
+function update(id, topics) {
   return new Promise ((resolve, reject) => {
     mongoClient.connect(process.env.SUBSCRIPTION_DB, (err, db) => {
-      db.collection('test').updateOne({"id": id}, {$set: {
-        "topics": topics,
-        "locations": locations
+      db.collection('subscriptions').updateOne({"id": id}, {$set: {
+        "topics": topics
       }}, (err, result) => {
         db.close()
         if (err) {
@@ -43,7 +41,7 @@ function update(id, topics, locations) {
 function get (id) {
   return new Promise ((resolve, reject) => {
     mongoClient.connect(process.env.SUBSCRIPTION_DB, (err, db) => {
-      db.collection('test').findOne({"id": id}, (err, doc) => {
+      db.collection('subscriptions').findOne({"id": id}, (err, doc) => {
         db.close()
         if (err) {
           reject(err)

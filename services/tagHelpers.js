@@ -8,7 +8,9 @@ function mergeTags (old, current) {
     acc[elem] = ""
     return acc
   }, {})
-  return Object.assign(current, deletedObj)
+  var merged = Object.assign(current, deletedObj)
+  console.log("Merged", merged)
+  return merged
 }
 
 function createTags (topics) {

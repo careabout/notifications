@@ -1,3 +1,5 @@
+var request = require('superagent')
+
 var mergeTags = require('./tagHelpers').mergeTags
 var createTags = require('./tagHelpers').createTags
 

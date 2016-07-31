@@ -7,8 +7,8 @@
     "node": "6.3.0"
   },
   "scripts": {
-    "start": "node server/server.js",
-    "server": "node-inspector --web-port 8888 & nodemon --debug server/server",
+    "start": "node server.js",
+    "server": "node-inspector --web-port 8888 & nodemon --debug server",
     "test": "tape tests/**/*.test.js | tap-spec"
   },
   "repository": {
@@ -33,6 +33,7 @@
     "dotenv": "^2.0.0",
     "express": "^4.13.4",
     "lodash": "^4.14.1",
-    "mongodb": "^2.2.5"
+    "mongodb": "^2.2.5",
+    "superagent": "^2.1.0"
   }
 }
