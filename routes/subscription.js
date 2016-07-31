@@ -9,7 +9,7 @@ router.post('/:id', (req, res) => {
   var id = req.params.id
   var topics = req.body.topics
   var locations = req.body.locations
-  onesignal.add(id, topics, locations)
+  onesignal.update(id, topics, locations)
     .then(() => {
       db.save(id, topics, locations)
         .then(() => {
@@ -37,13 +37,17 @@ router.put('/:id', (req, res) => {
   var id = req.params.id
   var topics = req.body.topics
   var locations = req.body.locations
-  db.update(id, topics, locations)
+  onesignal.update(id, topics, locations)
     .then(() => {
-      res.sendStatus(200)
+      db.update(id, topics, locations)
+        .then(() => {
+          res.sendStatus(200)
+        })
+        .catch((err) => {
+          res.send(500, err.message)
+        })
     })
-    .catch((err) => {
-      res.send(500, err.message)
-    })
+    .catch((e) => res.sendStatus(500, e.message))
 })
 
 module.exports = router
