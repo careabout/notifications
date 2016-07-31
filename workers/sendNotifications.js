@@ -31,7 +31,7 @@ function sendNotifications (decisions) {
       included_segments: allTopics,
       chrome_web_icon: process.env.SITE_URL + '/notification_logo.png',
       firefox_icon: process.env.SITE_URL + '/notification_logo.png',
-      url: process.env.SITE_URL + '/v1/decisions/' + decision._id
+      url: process.env.SITE_URL + '/#/decisions/' + decision._id
     }
     sendNotification(message)
     updateDecisionAsProcessed(decision._id)
