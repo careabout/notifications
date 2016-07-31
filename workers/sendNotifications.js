@@ -15,7 +15,6 @@ function getDecisions () {
       if (err) {
         logger.log({type: 'error', msg: err.message})
       } else {
-        console.log(res.body.decisions)
         sendNotifications(res.body.decisions)
       }
     })
@@ -34,31 +33,31 @@ function sendNotifications (decisions) {
       firefox_icon: process.env.SITE_URL + '/notification_logo.png',
       url: process.env.SITE_URL + '/v1/decisions/' + decision._id
     }
-    sendNotification(decision._id, message)
+    sendNotification(message)
     updateDecisionAsProcessed(decision._id)
   })
 }
 
-function sendNotification (id, message) {
+function sendNotification (message) {
   request
-    .post('https://onesignal.com/api/v1/notifications/' + id)
+    .post('https://onesignal.com/api/v1/notifications')
     .set('Content-Type', 'application/json')
     .set('Authorization', 'Basic ' + process.env.AUTH_HEADER)
     .send(message)
     .end((err, res) => {
       if (err) {
-        logger.log({type: 'error', msg: err.message})
+        logger.log({type: 'error', msg: 'Notification error: ' + err.message})
       }
     })
 }
 
 function updateDecisionAsProcessed (id) {
   request
-    .put('https://care-about.herokuapp.com/v1/decisions/' + id + '/processed')
+    .put(process.env.SITE_URL + '/v1/decisions/' + id + '/processed')
     .set('Accept', 'application/json')
     .end((err, res) => {
       if (err) {
-        logger.log({type: 'error', msg: err.message})
+        logger.log({type: 'error', msg: 'Updating decision error: ' + err.message})
       }
     })
 }
