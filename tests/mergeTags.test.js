@@ -1,9 +1,9 @@
 var test = require('tape')
 
-var mergeTags = require('../mergeTags)
+var mergeTags = require('../services/tagHelpers').mergeTags
 
 test('Tags are blanked out', (t) => {
-  var old = {"existing": "not chnaged", "deleted": "has value"}
+  var old = {"existing": "not changed", "deleted": "has value"}
   var current = {"new": "is new", "existing": "not changed"}
   var expected = {"new": "is new", "existing": "not changed", "deleted": ""}
 
